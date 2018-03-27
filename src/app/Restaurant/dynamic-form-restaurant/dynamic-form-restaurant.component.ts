@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 
 import { RestaurantBase } from '../restaurant-base';
 
@@ -15,3 +15,5 @@ export class DynamicFormRestaurantComponent {
   get isValid() { return this.form.controls[this.field.key].valid; }
 
 }
+
+

@@ -1,15 +1,33 @@
 <div>
-  
-  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+  <div class="container-contact100">
+    <div class="wrap-contact100">
+      <form (ngSubmit)="onSubmit()" [formGroup]="form" class="contact100-form validate-form">
+        <span class="contact100-form-title">
+          Restaurant Form
+        </span>
 
-    <div *ngFor="let field of fields" class="form-row">
-      <app-dynamic-form-restaurant [field]="field" [form]="form"></app-dynamic-form-restaurant>
-    </div>
+        <div *ngFor="let field of fields" class="form-row">
+          <app-dynamic-form-restaurant [field]="field" [form]="form"></app-dynamic-form-restaurant>
+        </div>
 
-    <div class="form-row">
-      <button type="submit" [disabled]="!form.valid">Save</button>
+        <div class="form-group row">
+          <label class="col-xs-12 col-md-6 col-form-label label-input100">Image:</label>
+          <input type="file" name="photo" (change)="getFileDetails($event)" multiple class="col-xs-12 col-md-6" />
+        </div>
+        <div class="container-contact100-form-btn">
+          <div class="wrap-contact100-form-btn">
+            <div class="contact100-form-bgbtn"></div>
+            <button class="contact100-form-btn" type="submit" [disabled]="!form.valid">
+              <span>
+                Submit
+                <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+              </span>
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
-  </form>
+  </div>
 
   <div *ngIf="payLoad" class="form-row">
     <strong>Saved the following values</strong>

@@ -1,15 +1,14 @@
-<div [formGroup]="form">
-  <label [attr.for]="field.key">{{field.label}}</label>
+<div [formGroup]="form" [ngSwitch]="field.controlType" >
+  <label [attr.for]="field.key" class="label-input100 col-xs-12 col-sm-12 col-md-6">{{field.label}}</label>
 
-  <div [ngSwitch]="field.controlType">
+    <input *ngSwitchCase="'textbox'" [formControlName]="field.key" [id]="field.key" [type]="field.type" class="col-xs-12 col-sm-12 col-md-6">
 
-    <input *ngSwitchCase="'textbox'" [formControlName]="field.key" [id]="field.key" [type]="field.type">
-
-    <select [id]="field.key" *ngSwitchCase="'dropdown'" [formControlName]="field.key">
+    <select [id]="field.key" *ngSwitchCase="'dropdown'" [formControlName]="field.key" class="col-xs-12 col-sm-12 col-md-6 ">
       <option *ngFor="let opt of field.options" [value]="opt.key">{{opt.value}}</option>
     </select>
 
-  </div>
+    <input *ngSwitchCase="'file'" [formControlName]="field.key" [id]="field.key" [type]="field.type" (change)="getFileDetails($event)">
+
 
   <div class="errorMessage" *ngIf="!isValid">{{field.label}} is required</div>
 </div>

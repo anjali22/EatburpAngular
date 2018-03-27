@@ -12,14 +12,18 @@ import { RestaurantService } from '../../services/restaurant.service';
   styleUrls: ['./add-restaurant.component.css']
 })
 export class AddRestaurantComponent implements OnInit {
+  fields: any;
   myFiles: string[] = [];
   sMsg = '';
   name = '';
   public myForm: FormGroup; // our model driven form
   constructor(private _fb: FormBuilder,
     private restaurantService: RestaurantService,
-    private httpService: HttpClient) { } // form builder simplify form initialization
+    private httpService: HttpClient) {
+      this.fields = restaurantService.getFields();
+     }
   results: object[];
+  restaurant: Restaurant;
 
   ngOnInit() {
   }
@@ -36,7 +40,7 @@ export class AddRestaurantComponent implements OnInit {
     for (let i = 0; i < this.myFiles.length; i++) {
       frmData.append('photo', this.myFiles[i]);
     }
-    frmData.append(Restaurant.name, this.name);
+    frmData.append(this.restaurant.phone, this.name);
 
     this.httpService.post('http://localhost:3000/uploadimage', frmData).subscribe(
       data => {
