@@ -4,31 +4,25 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { Restaurant } from '../models/restaurant';
-import { RestaurantBase } from '../restaurant-base';
 import { MessageService } from './message.service';
-import { fields } from '../models/restaurant-fields';
+import { fields } from '../models/food-item-fields';
 import { environment } from '../../environments/environment';
 
-const httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': undefined })
-};
-
 @Injectable()
-export class RestaurantService {
+export class FoodItemService {
     public images: any;
     body: any;
     constructor(private http: HttpClient, private messageService: MessageService) { }
 
-    addRestaurant(payload): Observable<any> {
-        return this.http.post<any>(environment.baseURL + 'uploadrestoimage', payload).pipe(
+    getFields() {
+        return fields;
+    }
+
+    addFoodItem(payload): Observable<any> {
+        return this.http.post<any>(environment.baseURL + 'addfooditem', payload).pipe(
             tap((hero: any) => this.log(`added hero`)),
             catchError(this.handleError<any>('addHero'))
         );
-    }
-
-    getFields() {
-        return fields;
     }
 
     private handleError<T>(operation = 'operation', result?: T) {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { RestaurantBase } from '../Restaurant/restaurant-base';
+import { RestaurantBase } from '../restaurant-base';
 
 @Injectable()
 export class RestaurantControlService {

@@ -1,6 +1,6 @@
-import { RestaurantBase } from '../Restaurant/restaurant-base';
-import { TextboxQuestion } from '../Restaurant/restaurant-textbox';
-import { Dropdown } from '../Restaurant/restaurant-dropdown';
+import { RestaurantBase } from '../restaurant-base';
+import { TextboxQuestion } from '../restaurant-textbox';
+import { Dropdown } from '../restaurant-dropdown';
 
 export class RestaurantField {
 

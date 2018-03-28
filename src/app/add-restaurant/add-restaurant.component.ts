@@ -3,8 +3,8 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators, FormBuilder } 
 import { HttpClient } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http/src/response';
 
-import { Restaurant } from '../../models/restaurant';
-import { RestaurantService } from '../../services/restaurant.service';
+import { Restaurant } from '../models/restaurant';
+import { RestaurantService } from '../services/restaurant.service';
 
 @Component({
   selector: 'app-add-restaurant',
@@ -12,6 +12,7 @@ import { RestaurantService } from '../../services/restaurant.service';
   styleUrls: ['./add-restaurant.component.css']
 })
 export class AddRestaurantComponent implements OnInit {
+  formName: String = 'Restaurant-Form';
   fields: any;
   myFiles: string[] = [];
   sMsg = '';
@@ -27,7 +28,8 @@ export class AddRestaurantComponent implements OnInit {
 
   ngOnInit() {
   }
-  getFileDetails(e) {
+  /************** This code can be removed from here. ***********************
+    getFileDetails(e) {
     // console.log (e.target.files);
     for (let i = 0; i < e.target.files.length; i++) {
       this.myFiles.push(e.target.files[i]);
@@ -52,5 +54,5 @@ export class AddRestaurantComponent implements OnInit {
         console.log(err.message);    // SHOW ERRORS IF ANY.
       }
     );
-  }
+  } */
 }

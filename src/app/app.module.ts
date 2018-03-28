@@ -13,14 +13,16 @@ import { AppRoutingModule, routingComponents } from './app.routing';
 // components
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { AddRestaurantComponent } from './Restaurant/add-restaurant/add-restaurant.component';
-import { DynamicFormRestaurantComponent } from './Restaurant/dynamic-form-restaurant/dynamic-form-restaurant.component';
-import { DynamicFormComponent } from './Restaurant/dynamic-form/dynamic-form.component';
+import { AddRestaurantComponent } from './add-restaurant/add-restaurant.component';
+import { DynamicFormRestaurantComponent } from './dynamic-form-restaurant/dynamic-form-restaurant.component';
+import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
+import { AddFoodItemComponent } from './add-food-item/add-food-item.component';
 
 // services
 import { MessageService } from './services/message.service';
 import { RestaurantService } from './services/restaurant.service';
 import { RestaurantControlService } from './services/restaurant-field.service';
+import { FoodItemService } from './services/food-item.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { RestaurantControlService } from './services/restaurant-field.service';
     AddRestaurantComponent,
     FileSelectDirective,
     DynamicFormRestaurantComponent,
-    DynamicFormComponent
+    DynamicFormComponent,
+    AddFoodItemComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +47,8 @@ import { RestaurantControlService } from './services/restaurant-field.service';
   providers: [
     MessageService,
     RestaurantService,
-    RestaurantControlService
+    RestaurantControlService,
+    FoodItemService
   ],
   bootstrap: [AppComponent]
 })

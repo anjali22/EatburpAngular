@@ -3,7 +3,7 @@
     <div class="wrap-contact100">
       <form (ngSubmit)="onSubmit()" [formGroup]="form" class="contact100-form validate-form">
         <span class="contact100-form-title">
-          Restaurant Form
+          {{formName}}
         </span>
 
         <div *ngFor="let field of fields" class="form-row">
