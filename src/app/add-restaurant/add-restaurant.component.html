@@ -1,0 +1,32 @@
+<!-- this is the working code without using form -->
+
+<!--  <div class="page-heading">
+  <h1 class="page-title">Add Salesperson</h1>
+</div>
+  <div class="tab-content">
+    <div class="tab-pane fade show active">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">First Name:</label>
+        <div class="col-sm-10">
+          <input class="form-control" placeholder="First Name" type="text" id="name" [(ngModel)] = "name" >
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Last Name:</label>
+        <div class="col-sm-10">
+          <input class="form-control" placeholder="Last Name" type="text" name="phone">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Image:</label>
+        <div class="col-sm-10">
+          <input type="file" name="photo" (change)="getFileDetails($event)" multiple />
+        </div>
+      </div>
+    </div>
+  </div>
+  <button type="submit" (click)="uploadFiles()">Submit</button> -->
+
+  <div>
+    <app-dynamic-form [fields]="fields" [formName]="formName"></app-dynamic-form>
+  </div>

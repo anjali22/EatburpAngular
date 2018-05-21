@@ -1,0 +1,7 @@
+.container-table {
+    padding: 15px;
+}
+.vertical-center-row {
+    display: table-cell;
+    vertical-align: middle;
+}
