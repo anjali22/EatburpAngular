@@ -37,8 +37,9 @@ export class SignUpComponent implements OnInit {
       data => {
         console.log('data----------', data);
         if (data['success']) {
-          localStorage.setItem('token', data['token']);
-          this.router.navigate(['addMenu']);
+          localStorage.setItem('token', JSON.stringify(data['token']));
+          localStorage.setItem('user', JSON.stringify(data['user']));
+          this.router.navigate(['home']);
         } else {
           alert(data['error']);
         }
