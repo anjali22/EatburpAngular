@@ -1,0 +1,82 @@
+<div class="container container-table">
+  <div class="col-sm-6 col-sm-offset-3">
+    <h1>
+      <span class="fa fa-sign-in">
+      </span>
+      Sign Up
+    </h1>
+    <!-- LOGIN FORM -->
+    <form [formGroup]="signUpForm" novalidate (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>First Name</label>
+        <input type="text" class="form-control " formControlName="first_name" id="first_name" required>
+        <div *ngIf="signUpForm.controls['first_name'].invalid && (signUpForm.controls['first_name'].dirty || signUpForm.controls['first_name'].touched)"
+          class="alert alert-danger">
+          <div *ngIf="signUpForm.controls['first_name'].errors.required">
+           First Name is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" class="form-control" formControlName="last_name">
+        <div *ngIf="signUpForm.controls['last_name'].invalid && (signUpForm.controls['last_name'].dirty || signUpForm.controls['last_name'].touched)"
+          class="alert alert-danger">
+          <div *ngIf="signUpForm.controls['last_name'].errors.required">
+           Last Name is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" class="form-control" formControlName="email">
+        <div *ngIf="signUpForm.controls['email'].invalid && (signUpForm.controls['email'].dirty || signUpForm.controls['email'].touched)"
+          class="alert alert-danger">
+          <div *ngIf="signUpForm.controls['email'].errors.required">
+            Email is required.
+          </div>
+          <div *ngIf="signUpForm.controls['email'].errors.email">
+            Enter correct email format.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" class="form-control" formControlName="password">
+        <div *ngIf="signUpForm.controls['password'].invalid && (signUpForm.controls['password'].dirty || signUpForm.controls['password'].touched)"
+          class="alert alert-danger">
+          <div *ngIf="signUpForm.controls['password'].errors.required">
+            password is required.
+          </div>
+          <div *ngIf="signUpForm.controls['password'].errors.minlength">
+            Password should be atleast 6 characters.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Confirm Password</label>
+        <input type="password" class="form-control" formControlName="confirmPassword">
+        <div *ngIf="signUpForm.controls['confirmPassword'].invalid && (signUpForm.controls['confirmPassword'].dirty || signUpForm.controls['confirmPassword'].touched)"
+          class="alert alert-danger">
+          <div *ngIf="signUpForm.controls['confirmPassword'].errors.required">
+            password is required.
+          </div>
+          <div *ngIf="signUpForm.controls['confirmPassword'].errors.MatchPassword">
+            Password does not match.
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-warning btn-lg" [disabled]="!signUpForm.valid">Sign Up</button>
+    </form>
+
+    <hr>
+
+    <p>Already have an account.
+      <a routerLink="/login">Login</a>
+    </p>
+  </div>
+</div>

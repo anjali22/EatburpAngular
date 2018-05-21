@@ -110,12 +110,10 @@ button {
 	border: none;
 	background: transparent;
 }
-button:disabled {
-   background-color: gray;
-}
-/* button:hover {
+
+button:hover {
 	cursor: pointer;
-} */
+}
 
 iframe {
 	border: none !important;
@@ -155,11 +153,11 @@ iframe {
 }
 
 .wrap-contact100 {
-  width: 500px;
+  width: 1410px;
   background: #fff;
   border-radius: 10px;
-  overflow: hidden;
-  padding: 42px 55px 45px 55px;
+  overflow: auto;
+  padding: 42px 40px 45px 40px;
 }
 
 
@@ -549,8 +547,7 @@ textarea.input100 {
   color: #333333;
   line-height: 1.2;
 }
+.table{
+      border:none;
 
-
-
-
-
+}

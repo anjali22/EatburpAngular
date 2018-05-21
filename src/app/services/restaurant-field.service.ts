@@ -1,13 +1,46 @@
 import { Injectable } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
 
 import { RestaurantBase } from '../restaurant-base';
 
 @Injectable()
 export class RestaurantControlService {
-    constructor() { }
+    constructor(private fb: FormBuilder) { }
+     group: any = {};
+     public newForm: FormGroup; // to group all the fields in a form
 
-    toFormGroup(fields: RestaurantBase<any>[]) {
+     /** creates new form and insert a form array of inputFields. */
+    toFormGroup(fields) {
+         this.newForm = this.fb.group({
+            inputFields: this.fb.array([
+               this.initializeFields(fields)
+            ])
+        });
+
+        return this.newForm;
+    }
+
+    /** This method initialize all the fields with form Control. And again group them into one group. */
+    initializeFields(fields): any {
+        fields.forEach(field => {
+            this.group[field.key] = field.required ? new FormControl(null, Validators.required)
+                : new FormControl();
+        });
+         return this.fb.group(this.group);
+    }
+
+    /** This method add 10 more fields into the form. 1st we took the name of form array in whih we want to insert
+     *  and then push fields using initializeFields method.
+     */
+    addFields(fields) {
+        // for (let i = 0; i < 9; i++) {
+            const control = <FormArray>this.newForm.controls['inputFields'];
+            control.push(this.initializeFields(fields));
+        // }
+
+    }
+
+    /* toFormGroup(fields: RestaurantBase<any>[]) {
         const group: any = {};
 
         fields.forEach(field => {
@@ -15,5 +48,5 @@ export class RestaurantControlService {
                 : new FormControl(field.value || '');
         });
         return new FormGroup(group);
-    }
+    } */
 }

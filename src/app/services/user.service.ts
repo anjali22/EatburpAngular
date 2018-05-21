@@ -4,29 +4,42 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
+import { Restaurant } from '../models/restaurant';
+import { RestaurantBase } from '../restaurant-base';
 import { MessageService } from './message.service';
-import { fields } from '../models/food-item-fields';
+import { fields } from '../models/restaurant-fields';
 import { environment } from '../../environments/environment';
-import { menuFields } from '../models/menu-item-fields';
 
+/* const httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': undefined })
+};
+ */
 @Injectable()
-export class FoodItemService {
+export class UserService {
     public images: any;
     body: any;
     constructor(private http: HttpClient, private messageService: MessageService) { }
+
+    login(payload): Observable<any> {
+        return this.http.post<any>(environment.baseURL + 'angularSignIn', payload).pipe(
+            tap((hero: any) => this.log(`added hero`)),
+            catchError(this.handleError<any>('addHero'))
+        );
+    }
+
+    signUp(payload): Observable<any> {
+        return this.http.post<any>(environment.baseURL + 'angularSignUp', payload).pipe(
+            tap((hero: any) => this.log(`added hero`)),
+            catchError(this.handleError<any>('addHero'))
+        );
+    }
 
     getFields() {
         return fields;
     }
 
-    getMenuFields() {
-        let menu = [];
-        menu = menuFields;
-        return menu;
-    }
-
-    addFoodItem(payload): Observable<any> {
-        return this.http.post<any>(environment.baseURL + 'addfooditem', payload).pipe(
+    getRestoName(): Observable<any> {
+        return this.http.get<any>(environment.baseURL + 'searchRestoName').pipe(
             tap((hero: any) => this.log(`added hero`)),
             catchError(this.handleError<any>('addHero'))
         );

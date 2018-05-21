@@ -11,7 +11,9 @@ import { fields } from '../models/restaurant-fields';
 import { environment } from '../../environments/environment';
 
 const httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': undefined })
+    headers: new HttpHeaders({
+        'x-access-token': JSON.parse(localStorage.getItem('token'))
+    })
 };
 
 @Injectable()
@@ -21,7 +23,7 @@ export class RestaurantService {
     constructor(private http: HttpClient, private messageService: MessageService) { }
 
     addRestaurant(payload): Observable<any> {
-        return this.http.post<any>(environment.baseURL + 'uploadrestoimage', payload).pipe(
+        return this.http.post<any>(environment.baseURL + 'uploadrestoimage', payload, httpOptions).pipe(
             tap((hero: any) => this.log(`added hero`)),
             catchError(this.handleError<any>('addHero'))
         );
@@ -29,6 +31,13 @@ export class RestaurantService {
 
     getFields() {
         return fields;
+    }
+
+    getRestoName(): Observable<any> {
+        return this.http.get<any>(environment.baseURL + 'searchRestoName').pipe(
+            tap((hero: any) => this.log(`added hero`)),
+            catchError(this.handleError<any>('addHero'))
+        );
     }
 
     private handleError<T>(operation = 'operation', result?: T) {

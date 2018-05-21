@@ -10,6 +10,15 @@ import { FileSelectDirective} from 'ng2-file-upload';
 import { AppComponent } from './app.component';
 import { AppRoutingModule, routingComponents } from './app.routing';
 
+// services
+import { MessageService } from './services/message.service';
+import { RestaurantService } from './services/restaurant.service';
+import { RestaurantControlService } from './services/restaurant-field.service';
+import { FoodItemService } from './services/food-item.service';
+import { RestaurantMenuService } from './services/restaurant-menu.service';
+import { UserService } from './services/user.service';
+import { AuthGuard } from './services/auth-guard.service';
+
 // components
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -17,12 +26,9 @@ import { AddRestaurantComponent } from './add-restaurant/add-restaurant.componen
 import { DynamicFormRestaurantComponent } from './dynamic-form-restaurant/dynamic-form-restaurant.component';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { AddFoodItemComponent } from './add-food-item/add-food-item.component';
-
-// services
-import { MessageService } from './services/message.service';
-import { RestaurantService } from './services/restaurant.service';
-import { RestaurantControlService } from './services/restaurant-field.service';
-import { FoodItemService } from './services/food-item.service';
+import { MenuItemComponent } from './menu-item/menu-item.component';
+import { DynamicMenuFormComponent } from './dynamic-menu-form/dynamic-menu-form.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +39,10 @@ import { FoodItemService } from './services/food-item.service';
     FileSelectDirective,
     DynamicFormRestaurantComponent,
     DynamicFormComponent,
-    AddFoodItemComponent
+    AddFoodItemComponent,
+    MenuItemComponent,
+    DynamicMenuFormComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +57,10 @@ import { FoodItemService } from './services/food-item.service';
     MessageService,
     RestaurantService,
     RestaurantControlService,
-    FoodItemService
+    FoodItemService,
+    RestaurantMenuService,
+    UserService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

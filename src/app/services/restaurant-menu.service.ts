@@ -5,28 +5,19 @@ import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { MessageService } from './message.service';
-import { fields } from '../models/food-item-fields';
 import { environment } from '../../environments/environment';
-import { menuFields } from '../models/menu-item-fields';
 
+const httpOptions = {
+    headers: new HttpHeaders({
+        'x-access-token': JSON.parse(localStorage.getItem('token'))
+    })
+};
 @Injectable()
-export class FoodItemService {
-    public images: any;
-    body: any;
+export class RestaurantMenuService {
     constructor(private http: HttpClient, private messageService: MessageService) { }
 
-    getFields() {
-        return fields;
-    }
-
-    getMenuFields() {
-        let menu = [];
-        menu = menuFields;
-        return menu;
-    }
-
-    addFoodItem(payload): Observable<any> {
-        return this.http.post<any>(environment.baseURL + 'addfooditem', payload).pipe(
+    addMenu(payload): Observable<any> {
+        return this.http.post<any>(environment.baseURL + 'addMenu', payload, httpOptions).pipe(
             tap((hero: any) => this.log(`added hero`)),
             catchError(this.handleError<any>('addHero'))
         );

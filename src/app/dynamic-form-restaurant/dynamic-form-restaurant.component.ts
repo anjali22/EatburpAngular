@@ -12,7 +12,10 @@ export class DynamicFormRestaurantComponent {
 
   @Input() field: RestaurantBase<any>;
   @Input() form: FormGroup;
-  get isValid() { return this.form.controls[this.field.key].valid; }
+  @Input() formName: string;
+  /* isValid() {
+   return this.form.controls.inputField.getError('errors', ['form.controls.inputFields.controls[0].controls[]']);
+  } */
 
 }
 
