@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FileSelectDirective} from 'ng2-file-upload';
+// import { FileSelectDirective} from 'ng2-file-upload';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule, routingComponents } from './app.routing';
@@ -36,7 +36,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     LoginComponent,
     HomeComponent,
     AddRestaurantComponent,
-    FileSelectDirective,
+    // FileSelectDirective,
     DynamicFormRestaurantComponent,
     DynamicFormComponent,
     AddFoodItemComponent,
