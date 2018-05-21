@@ -1,6 +1,6 @@
 <div [formGroup]="form" class="form-row">
   <div formArrayName="inputFields">
-    <div *ngFor="let inputField of form.controls['inputFields'].controls; let i=index">
+    <div *ngFor="let inputField of getControls(form, 'inputFields'); let i=index">
       <div [formGroupName]="i">
 
         <div [ngSwitch]="field.controlType">
