@@ -551,3 +551,7 @@ textarea.input100 {
       border:none;
 
 }
+
+button:disabled {
+   background-color: gray;
+}

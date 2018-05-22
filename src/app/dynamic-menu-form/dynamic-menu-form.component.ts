@@ -2,7 +2,7 @@ import { Component,
          OnInit,
          Input,
         } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { RestaurantBase } from '../restaurant-base';
@@ -30,7 +30,7 @@ export class DynamicMenuFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const restoName = new FormControl();
+    const restoName = new FormControl('', Validators.required);
     this.form = this.fieldService.toFormGroup(this.fields);
     this.form.addControl('restoName', restoName);
     this.getRestoName();
