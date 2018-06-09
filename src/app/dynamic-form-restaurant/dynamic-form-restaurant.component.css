@@ -179,3 +179,11 @@ textarea.input100 {
   -o-transform: translateX(10px);
   transform: translateX(10px);
 }
+
+.vertical-row { 
+  display: block; 
+  float: left; 
+}
+.horizontal-column { 
+  display: block; 
+}

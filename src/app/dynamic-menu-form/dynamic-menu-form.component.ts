@@ -2,7 +2,7 @@ import { Component,
          OnInit,
          Input,
         } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { RestaurantBase } from '../restaurant-base';
@@ -21,6 +21,7 @@ export class DynamicMenuFormComponent implements OnInit {
   @Input() formName: string;
   form: FormGroup;
   restaurants: any[];
+  inputFields: FormArray;
 
   constructor(
     private fieldService: RestaurantControlService,
@@ -30,11 +31,11 @@ export class DynamicMenuFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const restoName = new FormControl('', Validators.required);
+    const restaurant = new FormControl('', Validators.required);
     this.form = this.fieldService.toFormGroup(this.fields);
-    this.form.addControl('restoName', restoName);
+    this.form.addControl('restaurant', restaurant);
     this.getRestoName();
-    this.form.controls['restoName'].setValue(this.restaurants);
+    this.form.controls['restaurant'].setValue(this.restaurants);
   }
 
   onRestoChange(resto) {
@@ -73,6 +74,10 @@ export class DynamicMenuFormComponent implements OnInit {
       alert(err['message']);
     });
 
+  }
+
+  getControls(form, key: string) {
+    return (<FormArray>form.controls[key]).controls;
   }
 
 }
