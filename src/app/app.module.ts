@@ -18,6 +18,7 @@ import { FoodItemService } from './services/food-item.service';
 import { RestaurantMenuService } from './services/restaurant-menu.service';
 import { UserService } from './services/user.service';
 import { AuthGuard } from './services/auth-guard.service';
+import { Menu } from './models/menu-item-fields';
 
 // components
 import { HomeComponent } from './home/home.component';
@@ -60,7 +61,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     FoodItemService,
     RestaurantMenuService,
     UserService,
-    AuthGuard
+    AuthGuard,
+    Menu
   ],
   bootstrap: [AppComponent]
 })

@@ -6,6 +6,7 @@ export class RestaurantBase<T> {
     required: boolean;
     order: number;
     controlType: string;
+    canBeMultiple: boolean;
 
     constructor(options: {
         inputType?: string,
@@ -14,8 +15,9 @@ export class RestaurantBase<T> {
         label?: string,
         required?: boolean,
         order?: number,
-        controlType?: string
-        } = {}) {
+        controlType?: string,
+        canBeMultiple?: boolean
+    } = {}) {
         this.inputType = options.inputType;
         this.value = options.value;
         this.key = options.key || '';
@@ -23,5 +25,6 @@ export class RestaurantBase<T> {
         this.required = !!options.required;
         this.order = options.order === undefined ? 1 : options.order;
         this.controlType = options.controlType || '';
+        this.canBeMultiple = !!options.canBeMultiple;
     }
 }

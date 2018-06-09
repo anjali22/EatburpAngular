@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  baseURL: 'https://guarded-retreat-47589.herokuapp.com/'
+  baseURL: 'http://localhost:3000/'
 };

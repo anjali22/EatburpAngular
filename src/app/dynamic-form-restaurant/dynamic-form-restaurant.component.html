@@ -1,28 +1,51 @@
 <div [formGroup]="form" class="form-row">
   <div formArrayName="inputFields">
-    <div *ngFor="let inputField of getControls(form, 'inputFields'); let i=index">
-      <div [formGroupName]="i">
-
-        <div [ngSwitch]="field.controlType">
-          <label [attr.for]="field.key" ng-class="{'col-xs-12 col-sm-12': true, 'col-xs-12 col-sm-12 col-md-6': false}[formName === 'Menu-Item-Form']">{{field.label}}</label>
-
-          <input *ngSwitchCase="'textbox'" [formControlName]="field.key" [type]="field.type" ng-class="{'col-xs-12 col-sm-12': true, 'col-xs-12 col-sm-12 col-md-6': false}[formName === 'Menu-Item-Form']">
-          <div *ngIf="form.controls.inputFields.controls[i].invalid && (form.controls.inputFields.controls[i].dirty || form.controls.inputFields.controls[i].touched)">
-            <div *ngIf="form.controls.inputFields.controls[i].controls[field.key].invalid" class="alert alert-danger">
-              {{field.label}} is required.
+    <div>
+      <tr *ngFor="let inputField of getControls(form, 'inputFields'); let i=index" [ngClass]="{'vertical-row':formName === 'Restaurant-Form'}">
+        <div [formGroupName]="i">
+          <td *ngFor="let field of fields" [ngClass]="{'horizontal-column': formName=== 'Restaurant-Form'}">
+            <div *ngIf="field.canBeMultiple">
+              <div [formArrayName]="field.key">
+                <div *ngFor="let multiple of inputField.get('search_tag').controls let j=index">
+                  <div [formGroupName]="j">
+                    <div [ngSwitch]="field.controlType">
+                      <label [attr.for]="field.key" ng-class="{'col-xs-12 col-sm-12': true, 'col-xs-12 col-sm-12 col-md-6': false}[formName === 'Menu-Item-Form']">{{field.label}}</label>
+                      <a (click)="addField(field, inputField.controls.search_tag)">
+                        <span class="glyphicon glyphicon-plus" *ngIf="field.canBeMultiple"></span>
+                      </a>
+                      <input *ngSwitchCase="'textbox'" [formControlName]="field.key" [type]="field.type" ng-class="{'col-xs-12 col-sm-12': true, 'col-xs-12 col-sm-12 col-md-6': false}[formName === 'Menu-Item-Form']">
+                      <div *ngIf="form.controls.inputFields.controls[i].invalid && (form.controls.inputFields.controls[i].dirty || form.controls.inputFields.controls[i].touched)">
+                        <div *ngIf="form.controls.inputFields.controls[i].controls[field.key].invalid" class="alert alert-danger">
+                          {{field.label}} is required.
+                        </div>
+                      </div>
+                      <select [id]="field.key" *ngSwitchCase="'dropdown'" [formControlName]="field.key">
+                        <option *ngFor="let opt of field.options[0]" [value]="opt._id">{{opt.restaurant_name}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-          <select [id]="field.key" *ngSwitchCase="'dropdown'" [formControlName]="field.key" class="col-xs-12 col-sm-12 col-md-3">
-            <option *ngFor="let opt of field.options" [value]="opt.key">{{opt.value}}</option>
-          </select>
-
-          <input *ngSwitchCase="'file'" [formControlName]="field.key" [id]="field.key" [type]="field.type" (change)="getFileDetails($event)">
-
+            <div *ngIf="!field.canBeMultiple">
+              <div [ngSwitch]="field.controlType">
+                <label [attr.for]="field.key" ng-class="{'col-xs-12 col-sm-12': true, 'col-xs-12 col-sm-12 col-md-6': false}[formName === 'Menu-Item-Form']">{{field.label}}</label>
+                <input *ngSwitchCase="'textbox'" [formControlName]="field.key" [type]="field.type" ng-class="{'col-xs-12 col-sm-12': true, 'col-xs-12 col-sm-12 col-md-6': false}[formName === 'Menu-Item-Form']">
+                <div *ngIf="form.controls.inputFields.controls[i].invalid && (form.controls.inputFields.controls[i].dirty || form.controls.inputFields.controls[i].touched)">
+                  <div *ngIf="form.controls.inputFields.controls[i].controls[field.key].invalid" class="alert alert-danger">
+                    {{field.label}} is required.
+                  </div>
+                </div>
+                <select [id]="field.key" *ngSwitchCase="'dropdown'" [formControlName]="field.key">
+                  <option *ngFor="let opt of field.options[0]" [value]="opt._id">{{opt.restaurant_name}}</option>
+                </select>
+              </div>
+            </div>
+          </td>
         </div>
-      </div>
+      </tr>
     </div>
   </div>
-
 </div>
 
 <!-- <div formArrayName="addresses">

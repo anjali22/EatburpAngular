@@ -7,13 +7,13 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import { fields } from '../models/food-item-fields';
 import { environment } from '../../environments/environment';
-import { menuFields } from '../models/menu-item-fields';
+import { Menu } from '../models/menu-item-fields';
 
 @Injectable()
 export class FoodItemService {
     public images: any;
     body: any;
-    constructor(private http: HttpClient, private messageService: MessageService) { }
+    constructor(private http: HttpClient, private messageService: MessageService, private menuClass: Menu) { }
 
     getFields() {
         return fields;
@@ -21,7 +21,7 @@ export class FoodItemService {
 
     getMenuFields() {
         let menu = [];
-        menu = menuFields;
+        menu = this.menuClass.menuFields;
         return menu;
     }
 

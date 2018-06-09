@@ -22,10 +22,10 @@ export class RestaurantControlService {
 
     /** This method initialize all the fields with form Control. And again group them into one group. */
     initializeFields(fields): any {
-        fields.forEach(field => {
-            this.group[field.key] = field.required ? new FormControl(null, Validators.required)
-                : new FormControl();
-        });
+        for (let i = 0; i < fields.length; i++) {
+            this.group[fields[i].key] = fields[i].canBeMultiple ? this.fb.array([this.fb.group({ search_tag: [''] })]) :
+                (fields[i].required ? new FormControl(null, Validators.required) : new FormControl());
+        }
          return this.fb.group(this.group);
     }
 
@@ -38,6 +38,14 @@ export class RestaurantControlService {
             control.push(this.initializeFields(fields));
         // }
 
+    }
+
+    addField(field, control) {
+        control.push(
+            this.fb.group({
+                search_tag: ['']
+            })
+        );
     }
 
     /* toFormGroup(fields: RestaurantBase<any>[]) {
