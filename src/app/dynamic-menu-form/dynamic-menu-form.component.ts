@@ -63,7 +63,7 @@ export class DynamicMenuFormComponent implements OnInit {
   onSubmit() {
     console.log(this.form.value);
 
-    /* this.restaurantMenuService.addMenu(this.form.value)
+    this.restaurantMenuService.addMenu(this.form.value)
       .subscribe(data => {
         console.log(data['message']);
         alert(data['message']);
@@ -72,7 +72,7 @@ export class DynamicMenuFormComponent implements OnInit {
     err => {
       console.log(err);
       alert(err['message']);
-    }); */
+    });
 
   }
 
