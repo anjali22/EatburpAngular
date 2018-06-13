@@ -13,6 +13,9 @@ export class Menu extends RestaurantBase<any> {
     }
 
     searchOption = JSON.parse(sessionStorage.getItem('searchTag'));
+    cuisines = JSON.parse(sessionStorage.getItem('cuisines'));
+    meals = JSON.parse(sessionStorage.getItem('meals'));
+
 
     menuFields = [
         new TextboxQuestion({
@@ -27,16 +30,18 @@ export class Menu extends RestaurantBase<any> {
             order: 2
         }),
 
-        new TextboxQuestion({
+        new Dropdown({
             key: 'cuisine',
             label: 'Cuisine',
-            order: 1
+            order: 1,
+            options: [this.cuisines]
         }),
 
-        new TextboxQuestion({
+        new Dropdown({
             key: 'meal',
             label: 'Meal',
-            order: 1
+            order: 1,
+            options: [this.meals]
         }),
 
         new TextboxQuestion({

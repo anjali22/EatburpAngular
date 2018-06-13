@@ -23,6 +23,27 @@ export class RestaurantMenuService {
         );
     }
 
+    getSearchTag(): Observable<any> {
+        return this.http.get(environment.baseURL + 'getSearchTags').pipe(
+            tap((hero: any) => this.log(`added hero`)),
+            catchError(this.handleError<any>('addHero'))
+        );
+    }
+
+    getCuisines(): Observable<any> {
+        return this.http.get(environment.baseURL + 'getCuisines').pipe(
+            tap((hero: any) => this.log(`added hero`)),
+            catchError(this.handleError<any>('addHero'))
+        );
+    }
+
+    getMeals(): Observable<any> {
+        return this.http.get(environment.baseURL + 'getMeals').pipe(
+            tap((hero: any) => this.log(`added hero`)),
+            catchError(this.handleError<any>('addHero'))
+        );
+    }
+
     private handleError<T>(operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { RestaurantService } from '../services/restaurant.service';
+import { RestaurantMenuService } from '../services/restaurant-menu.service';
 
 @Component({
   selector: 'app-home',
@@ -11,17 +11,43 @@ import { RestaurantService } from '../services/restaurant.service';
 export class HomeComponent implements OnInit {
   public user;
   public searchOption;
-  constructor(private router: Router, private restaurantService: RestaurantService) { }
+  public cuisines;
+  meals;
+  constructor(private router: Router, private restaurantMenuService: RestaurantMenuService) { }
 
   ngOnInit() {
      this.user = JSON.parse(localStorage.getItem('user'));
     console.log('home------------', this.user);
-    this.restaurantService.getRestoName().subscribe(
+    this.restaurantMenuService.getSearchTag().subscribe(
       data => {
         console.log('results----------', data['results']);
         this.searchOption = data['results'];
         sessionStorage.setItem('searchTag', JSON.stringify(this.searchOption));
         console.log('searchOptions-------', this.searchOption);
+      },
+      err => {
+        console.log('error---------', err);
+      }
+    );
+
+    this.restaurantMenuService.getCuisines().subscribe(
+      data => {
+        console.log('results----------', data['results']);
+        this.cuisines = data['results'];
+        sessionStorage.setItem('cuisines', JSON.stringify(this.cuisines));
+        console.log('cuisines-------', this.cuisines);
+      },
+      err => {
+        console.log('error---------', err);
+      }
+    );
+
+    this.restaurantMenuService.getMeals().subscribe(
+      data => {
+        console.log('results----------', data['results']);
+        this.meals = data['results'];
+        sessionStorage.setItem('meals', JSON.stringify(this.meals));
+        console.log('meals-------', this.meals);
       },
       err => {
         console.log('error---------', err);
