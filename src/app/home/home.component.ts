@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   public searchOption;
   public cuisines;
   meals;
+  dish_type;
   constructor(private router: Router, private restaurantMenuService: RestaurantMenuService) { }
 
   ngOnInit() {
@@ -48,6 +49,18 @@ export class HomeComponent implements OnInit {
         this.meals = data['results'];
         sessionStorage.setItem('meals', JSON.stringify(this.meals));
         console.log('meals-------', this.meals);
+      },
+      err => {
+        console.log('error---------', err);
+      }
+    );
+
+    this.restaurantMenuService.getDishType().subscribe(
+      data => {
+        console.log('results----------', data['results']);
+        this.dish_type = data['results'];
+        sessionStorage.setItem('dishType', JSON.stringify(this.dish_type));
+        console.log('dishType-------', this.dish_type);
       },
       err => {
         console.log('error---------', err);

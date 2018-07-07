@@ -44,6 +44,13 @@ export class RestaurantMenuService {
         );
     }
 
+    getDishType(): Observable<any> {
+        return this.http.get(environment.baseURL + 'getDishType').pipe(
+            tap((hero: any) => this.log(`added hero`)),
+            catchError(this.handleError<any>('addHero'))
+        );
+    }
+
     private handleError<T>(operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
 
